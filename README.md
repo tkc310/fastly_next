@@ -75,4 +75,16 @@ $ npm run export
 ```console
 $ npx @fastly/compute-js-static-publish --preset=next
 # refs: https://github.com/fastly/compute-js-static-publish#1-run-compute-js-static-publish
+
+$ cd compute-js
+$ npm i
+$ fastly compute serve
+$ open http://localhost:7676
+```
+
+事前に compute service を追加しておき `compute-js/fastly.toml` の `service_id` を修正する。
+
+```console
+$ fastly compute publish
+# => デプロイが成功すると https://xxx.edgecompute.app のようなデプロイ先にアクセスするURLが表示される
 ```
