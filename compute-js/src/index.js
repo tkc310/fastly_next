@@ -5,13 +5,26 @@ import { assets, spaFile, notFoundPageFile, autoIndex, autoExt } from './statics
 
 const router = new Router();
 
+const RESOURCES = [
+  'posts'
+];
+
 function getMatchingRequestPath(path) {
   // If the path being looked up does not end in a slash, it has to
   // match exactly one of the assets
   if(!path.endsWith('/')) {
-
-    if(path in assets) {
+    if (path in assets) {
       return path;
+    }
+
+    const reg = new RegExp(`^/(${RESOURCES.join('|')})/(.+)`);
+    const resource = path.match(reg)?.[1];
+   
+    if (resource && RESOURCES.includes(resource)) {
+      const dynamicPath = `/${resource}/[id].html`;
+      if (dynamicPath in assets) {
+        return dynamicPath;
+      }
     }
 
     // try auto-ext
@@ -52,7 +65,8 @@ function requestAcceptsTextHtml(req) {
 }
 
 router.get("*", (req, res) => {
-  const assetPath = getMatchingRequestPath(req.urlObj.pathname);
+  const decodedPath = decodeURIComponent(req.urlObj.pathname);
+  const assetPath = getMatchingRequestPath(decodedPath);
   if(assetPath == null) {
     return;
   }
