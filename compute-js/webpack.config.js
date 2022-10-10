@@ -1,13 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
+const { ProvidePlugin } = webpack;
 
 module.exports = {
   entry: "./src/index.js",
-  experiments: {
-    topLevelAwait: true
-  },
   optimization: {
-    minimize: true,
+    minimize: false
   },
   target: "webworker",
   output: {
@@ -51,35 +49,13 @@ module.exports = {
     // Polyfills go here.
     // Used for, e.g., any cross-platform WHATWG,
     // or core nodejs modules needed for your application.
-    new webpack.ProvidePlugin({
-      Buffer: [ 'buffer', 'Buffer' ],
-      process: 'process',
-      setTimeout: [ 'timeout-polyfill', 'setTimeout' ],
-      clearTimeout: [ 'timeout-polyfill', 'clearTimeout' ],
-    }),
-    new webpack.EnvironmentPlugin({
-      NEXT_RUNTIME: 'edge',
-      NEXT_COMPUTE_JS: true,
+    new ProvidePlugin({
+      Buffer: [ "buffer", "Buffer" ],
     }),
   ],
   resolve: {
-    alias: {
-      'timeout-polyfill': require.resolve('@fastly/http-compute-js/dist/polyfill'),
-      'next/dist/compiled/etag': require.resolve('@fastly/next-compute-js/build/src/util/etag'),
-      'next/dist/compiled/raw-body': require.resolve('raw-body'),
-    },
     fallback: {
-      "async_hooks": false,
       "buffer": require.resolve("buffer/"),
-      "crypto": require.resolve("crypto-browserify/"),
-      "os": require.resolve("os-browserify/browser"),
-      "path": require.resolve("path-browserify"),
-      "process": require.resolve("process/browser"),
-      "querystring": require.resolve("querystring-es3"),
-      "stream": require.resolve("stream-browserify"),
-      "url": require.resolve("url/"),
-      "util": require.resolve("util/"),
-      "zlib": require.resolve("browserify-zlib"),
-    }
+    },
   },
 };
