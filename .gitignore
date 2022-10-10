@@ -14,3 +14,5 @@ npm-debug.log*
 # fastly
 # refs: https://github.com/fastly/cli/blob/main/.gitignore
 **/fastly.toml
+# compute-js/src/statics.jsもデプロイ都度生成されるためignoreして良さそう
+# (このリポジトリでは差分が見れるようにignoreしない)
