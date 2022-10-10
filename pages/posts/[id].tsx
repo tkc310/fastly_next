@@ -1,12 +1,11 @@
-import { TPost } from '@/data';
+import { posts, TPost } from '@/data';
 import type { NextPage } from 'next';
 import { NextRouter, useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-const fetchPost = async (id: TPost['id']): Promise<TPost> => {
-  const res = await fetch(`/api/posts/${id}`);
-  const data = await res.json();
-  return data;
+const fetchPost = async (id: TPost['id']): Promise<TPost | null> => {
+  const data = posts.find((item) => item.id === id);
+  return data || null;
 };
 
 const isId = (id: NextRouter['query']['id']): id is string =>

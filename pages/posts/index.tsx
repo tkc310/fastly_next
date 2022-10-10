@@ -1,12 +1,10 @@
-import { TPost } from '@/data';
+import { posts, TPost } from '@/data';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const fetchPosts = async (): Promise<TPost[]> => {
-  const res = await fetch('/api/posts');
-  const data = await res.json();
-  return data;
+  return posts;
 };
 
 const Posts: NextPage = () => {
