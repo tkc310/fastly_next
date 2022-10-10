@@ -1,6 +1,6 @@
 import { TPost } from '@/data';
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 const fetchPost = async (id: TPost['id']): Promise<TPost> => {
@@ -9,6 +9,9 @@ const fetchPost = async (id: TPost['id']): Promise<TPost> => {
   return data;
 };
 
+const isId = (id: NextRouter['query']['id']): id is string =>
+  typeof id === 'string';
+
 const Post: NextPage = () => {
   const [post, setPost] = useState<TPost | null>(null);
   const router = useRouter();
@@ -16,10 +19,12 @@ const Post: NextPage = () => {
   useEffect(() => {
     if (router.isReady) {
       (async () => {
-        const { id: _id } = router.query;
-        const id = _id as string;
-        const post = await fetchPost(id);
-        setPost(post);
+        const { id } = router.query;
+
+        if (isId(id)) {
+          const post = await fetchPost(id);
+          setPost(post);
+        }
       })();
     }
   }, [router.isReady, router.query]);
