@@ -1,6 +1,6 @@
 {
     "name": "fastly_next",
-    "description": "Compute@Edge static site",
+    "description": "Compute@Edge static site from Next.js",
     "author": "you@example.com",
     "devDependencies": {
         "@fastly/expressly": "^1.0.0-alpha.7",

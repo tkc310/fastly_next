@@ -24,6 +24,8 @@ $ open http://localhost:3000
 
 ### Fastly
 
+#### @fastly/next-compute-js
+
 ```console
 $ npx @fastly/next-compute-js
 # created ./compute-js/
@@ -35,21 +37,21 @@ $ brew install fastly/tap/fastly
 $ cd compute-js
 ```
 
-### Debug
+##### Debug
 
 ```console
 $ fastly compute serve
 $ open http://localhost:7676
 ```
 
-### Deploy
+##### Deploy
 
-事前に下記を行う  
-- fastlyにサインアップ  
-- personal api tokenの発行  
-- CLIのセットアップ (プロファイルを作る)  
-https://zenn.dev/hrmsk66/articles/74e2e890726e99
+事前に下記を行う
 
+- fastly にサインアップ
+- personal api token の発行
+- CLI のセットアップ (プロファイルを作る)  
+  https://zenn.dev/hrmsk66/articles/74e2e890726e99
 
 ```console
 $ fastly profile create test
@@ -63,3 +65,14 @@ $ fastly compute publish
 # => デプロイが成功すると https://xxx.edgecompute.app のようなデプロイ先にアクセスするURLが表示される
 ```
 
+#### @fastly/compute-js-static-publish
+
+```console
+$ npm run build
+$ npm run export
+```
+
+```console
+$ npx @fastly/compute-js-static-publish --preset=next
+# refs: https://github.com/fastly/compute-js-static-publish#1-run-compute-js-static-publish
+```
