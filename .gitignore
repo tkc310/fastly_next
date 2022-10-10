@@ -12,4 +12,5 @@ node_modules/
 npm-debug.log*
 
 # fastly
+# refs: https://github.com/fastly/cli/blob/main/.gitignore
 **/fastly.toml
