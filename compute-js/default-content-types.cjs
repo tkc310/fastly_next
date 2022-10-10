@@ -1,8 +1,3 @@
-/*
- * Copyright Fastly, Inc.
- * Licensed under the MIT license. See LICENSE file for details.
- */
-
 const defaultContentTypes = [
   // Text formats
   { test: /.txt$/, type: 'text/plain', binary: false },
