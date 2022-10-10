@@ -2,6 +2,10 @@
   "name": "fastly_next",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "18.10.0",
+    "npm": "8.19.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
