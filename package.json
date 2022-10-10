@@ -12,8 +12,8 @@
     "export": "next export",
     "start": "next start",
     "lint": "next lint",
-    "fastly-serve": "next build && cd compute-js && fastly compute serve",
-    "fastly-publish": "next build && cd compute-js && fastly compute publish"
+    "fastly-serve": "next build && next export && cd compute-js && fastly compute serve",
+    "fastly-publish": "next build && next export && cd compute-js && fastly compute publish"
   },
   "dependencies": {
     "next": "12.3.1",
